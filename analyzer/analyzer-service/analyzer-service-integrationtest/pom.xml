@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <parent>
+        <groupId>com.repositories.analyzer</groupId>
+        <artifactId>analyzer-service</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>analyzer-service-integrationtest</artifactId>
+
+    <packaging>jar</packaging>
+
+    <properties>
+        <mongodb.testcontainers.version>1.15.0</mongodb.testcontainers.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.repositories.analyzer</groupId>
+            <artifactId>analyzer-service-impl</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>mongodb</artifactId>
+            <version>${mongodb.testcontainers.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+</project>

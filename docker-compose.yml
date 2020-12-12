@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  web-gateway:
+    image:  arammar/analyzer-api-gateway:snapshot
+    restart: "no"
+    ports:
+      - "8081:8081"
+    links:
+      - analyzer-ms
+    environment:
+      - ANALYZER_SERVICE_URL=analyzer-ms:8080
+      - JAVA_TOOL_OPTIONS=-Xmx128m
+  analyzer-ms:
+    image: arammar/analyzer-rest-api:snapshot
+    restart: "no"
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    links:
+      - db
+    environment:
+      - SPRING_DATA_MONGODB_DATABASE=repositories-analyzer
+      - SPRING_DATA_MONGODB_URI=mongodb://db:27017
+      - JAVA_TOOL_OPTIONS=-Xmx256m
+  db:
+    image: mongo:3.2
+    restart: "on-failure"
+    ports:
+      - "27018:27017"
